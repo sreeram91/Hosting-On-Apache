@@ -1,0 +1,21 @@
+name: "push to Docker Hub"
+on:
+  push:
+    branches:
+      - master
+jobs:
+  push-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout on sourcecode 
+        uses: actions@checkout@v3
+
+      - name: login to Docker
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: build the image in detached mode
+        run: docker build -t sreeram91/hosting-on-httpd .
+
+      - name: push to Hub
+        run:  docker push sreeram91/hosting-on-httpd
+  
