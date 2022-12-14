@@ -1,4 +1,4 @@
-name: "push to Docker Hub"
+name: "push to DockerHub"
 on:
   push:
     branches:
